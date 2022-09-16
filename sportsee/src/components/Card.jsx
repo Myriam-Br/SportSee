@@ -1,11 +1,17 @@
 import React from "react";
 
-function Card() {
+function Card({name, value, icon}) {
+ let unit = ""
+ if(name === "calorieCount") {
+    unit = 'kcal'
+ }else {
+    unit = 'g'
+ }
  return <article className="card">
-    <div className="image"><img src="" alt="" /></div>
+    <div className="image"><img src={icon} alt="icon" /></div>
     <div className="card_text">
-        <h3>Some text</h3>
-        <p>some more text</p>
+        <h3>{value} {unit}</h3>
+        <p>{name}</p>
     </div> 
    
 </article>

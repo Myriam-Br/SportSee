@@ -22,4 +22,20 @@ export function getCardInfo(userId) {
     }
 }
 
+export function getUserActivity(userId) {
+    for(let user of USER_ACTIVITY) {
+        if(user.userId === JSON.parse(userId)) {
+            return user.sessions
+        }
+    }
+}
+
+export function getUserAverageSession(userId) {
+    for(let user of USER_AVERAGE_SESSIONS) {
+        if(user.userId === JSON.parse(userId)) {
+            return user.sessions
+        }
+    }
+}
+
 

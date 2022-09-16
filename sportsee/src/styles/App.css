@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.main_container{
+  position: relative;
+}
+
 .NavBarH{
   background-color: black;
   color: white;
@@ -18,7 +22,6 @@
 ul {
   list-style: none;
   display: flex;
-
 }
 
 .rubriquesH {
@@ -47,23 +50,110 @@ ul {
   margin-bottom: 20px;
 }
 
+.info_user{
+  float: left;
+  padding-left: 150px;
+  font-family: 'Roboto';
+  font-size: 25px;
+}
 
 .card_container {
-  border: solid black 2px;
-  width: 33%;
+  width: 20%;
   float: right;
   display: flex;
-  padding: 20px 30px;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 218px;
+
 }
+
 .card{
-  border: solid black 1px;
+  border-radius: 5px;
+  background-color: #FBFBFB;;
   width: 100%;
   display: flex;
-
+  text-align: left;
+  margin-bottom: 70px;
+  height: 100px;
+  padding: 10px 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
 }
 
-.card .image{
-  width: 25%;
-  background-color: cadetblue;
+.card .image {
+ margin-right: 20px;
+ height: 80%;
+ margin-top: 10px;
+}
+.card .image img{
+  width: 80px;
+  height: 100%;
   margin-right: 10%;
 }
+
+.main_container{
+  margin-left: 150px;
+  width: 100%;
+}
+
+.container_activity {
+  border-radius: 10px;
+  background-color: #FBFBFB;;
+  width: 70%;
+  margin-top: 150px;
+}
+
+.secondary_container{
+  width:70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.secondary_container .container_average_session{
+  width: 30%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #FF0000 75%, #d50000 25%);
+  padding: 15px;
+
+}
+.container_average_session h2{
+  text-align: left;
+  color: rgba(255, 255, 255, 0.579);
+  font-size: 30px;
+  font-weight: 400;
+  width: 75%;
+}
+.container_activity .params_graph{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.container_activity .graph_activity {
+  margin-right: 10px;
+  margin-left: 10px
+};
+
+.container_activity h2{
+  text-align: left;
+  margin-bottom: 20px;
+  font-weight: 400;
+  margin-right: 50%;
+}
+
+.container_activity p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #74798C;
+
+}
+.container_activity p img {
+  margin-right: 10px;
+}
+
+
+
