@@ -4,11 +4,14 @@ import { XAxis, YAxis,  Bar, BarChart, Tooltip, ResponsiveContainer, CartesianGr
 import redDot from "../assets/redcircle.png"
 import blackDot from "../assets/blackcircle.png"
 
-
-function GraphUserActivity({prop}) {
+/**
+ * @param { Number } prop
+*/
+function BarChartComponent({prop}) {
     const data = UserActivity(prop)
 
-    let arrayData = Object.values(data)
+    //convert data in an array to be able to use map method that is required to create a chart
+    const arrayData = Object.values(data)
 
     return <article className="container_activity"> 
         <div className="params_graph">
@@ -32,4 +35,4 @@ function GraphUserActivity({prop}) {
     </article>
 }
 
-export default GraphUserActivity
+export default BarChartComponent

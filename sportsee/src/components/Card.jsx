@@ -1,6 +1,13 @@
 import React from "react";
 
+/**
+ *  Send request using axios api to get data user average session
+ * @param { String } name
+ * @param { Number } value
+ * @param { String } icon
+ */
 function Card({name, value, icon}) {
+
  let unit = ""
  if(name === "calorieCount") {
     unit = 'kcal'

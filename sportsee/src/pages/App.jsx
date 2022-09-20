@@ -5,31 +5,36 @@ import NavBarH from '../components/NavBarHorizontal';
 import NavBarV from '../components/NavBarVertical';
 import ContainerCard from '../components/ContainerCard';
 import Profile from "../components/Profil";
-import GraphUserActivity from '../components/GraphUserActivity';
-import GraphAverageSession from '../components/GraphAverageSession';
+
+//IMPORT CHART COMPONENTS
+import BarChartComponent from '../components/BarChart';
+import LineChartComponent from '../components/LineChart';
+import RadarChartComponent from "../components/RadarChart"
+import PieChartComponent from '../components/PieChart';
 
 
 function App() {
 
   const params = useParams()
-
-
+  const userId = parseInt(params.id)
+ 
   return (
     <div className="App">
       <header>
         <NavBarH/>
         <NavBarV/>  
-        <Profile prop = {params.id}/>
+        
       </header>
       <section className='main_container'>
-        <GraphUserActivity prop = {params.id}/>
-        <div className='secondary_container'>
-        <GraphAverageSession prop = {params.id}/>
-        <GraphAverageSession prop = {params.id}/>
-        <GraphAverageSession prop = {params.id}/>
-        </div>
+        <Profile prop = {userId}/>
+        <BarChartComponent prop = {userId}/>
+          <div className='secondary_container'>
+            <LineChartComponent prop = {userId}/>
+            <RadarChartComponent prop = {userId}/>
+            <PieChartComponent prop = {userId}/>
+          </div>
       </section>
-      <ContainerCard prop = {params.id}/>
+      <ContainerCard prop = {userId}/>
     </div>
   );
 }

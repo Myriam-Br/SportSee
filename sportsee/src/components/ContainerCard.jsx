@@ -1,13 +1,18 @@
 import React from "react";
 import Card from "./Card";
-import Data from "../mock_services/apiCalls";
+import UserMain from "../mock_services/apiCalls";
 import caloriesIcon from "../assets/calories-icon.png"
 import fatIcon from "../assets/fat-icon.png"
 import carbsIcon from "../assets/carbs-icon.png"
 import proteinIcon from "../assets/protein-icon.png"
+
+
+/**
+ * @param { Number } prop
+*/
 function ContainerCard({prop}) {
-  
-    //récupération des icones
+
+    //create new Object icons with all the icon files
     const icons = {
         Calories : caloriesIcon,
         Proteines: proteinIcon,
@@ -15,14 +20,15 @@ function ContainerCard({prop}) {
         Lipides: fatIcon,
     }
 
-    //récupération des données
-    const data = Data(prop)
+
+    const data = UserMain(prop)
     
-    //gestion le cas ou on renvoie null à la place des données lors de la récupération dans apiCalls
+    //handle case where data is not an object
     if(typeof data !== "object") {
         return 0
     }
-    //transformer objet cardInfo en tableau 
+
+    //convert data.cardInfo and icons into arrays
     const cardInfoTab = Object.entries(data.cardInfo)
     const iconTab = Object.entries(icons)
 
