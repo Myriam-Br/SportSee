@@ -12,35 +12,50 @@ function PieChartComponent({prop}) {
     //convert data in an array to be able to use map method that is required to create a chart
     const arrayData =  Object.values(data)
 
+    if(arrayData[0] === undefined) {
+        return null
+    }
+
+    let value = `${arrayData[0].score}%`
+  
     return( <div className="container_user_score">
-        <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={730} height={250}>
-                <Pie data={arrayData} dataKey="score"  cx="50%" cy="50%" innerRadius={60} outerRadius={80}>
-
-                {arrayData.map((entry, index) => {
-                     if (index === 1) {
-                        return <Cell key={`cell-${index}`} fill="aliceblue" />; 
-                      }
-                      return <Cell key={`cell-${index}`} fill="red" />;
-                })}
-            
+        <h3>Score</h3>
+        <ResponsiveContainer className="pieChart" width="100%" height={250}>
+            <PieChart>
+            <Pie
+                    data={arrayData}
+                    cx="50%"
+                    cy="50%"
+                    dataKey="score" 
+                    innerRadius={60} 
+                    outerRadius={80}
+                   
+                >
+                    {arrayData.map((entry, index) => {
+                    if (index === 1) {
+                        return <Cell key={`cell-${index}`} fill="#FFFFFF" />; 
+                    }
+                    return <Cell key={`cell-${index}`} fill="red" />;
+                    })}
                     <Label
-                    value= {arrayData[0]}
-                    position="center"
-                    fill="grey"
-                    style={{
-                        fontSize: "32px",
-                        fontWeight: "bold",
-                        fontFamily: "Roboto"
-                    }}
+                        className="label_pie_chart"
+                        value={value}
+                        position="center"
+                        fill="black"
+                        style={{
+                            fontSize: "36px",
+                            fontWeight: "bold",
+                            fontFamily: "Roboto"
+                        }}
                     />
-
                 </Pie>
             </PieChart>
       </ResponsiveContainer>
+      <h4>de votre objectif</h4>
     </div>
         
     )
 }
+
 
 export default PieChartComponent

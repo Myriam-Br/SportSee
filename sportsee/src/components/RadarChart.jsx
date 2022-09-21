@@ -7,7 +7,7 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } fro
 */
 function RadarChartComponent({prop}) {
     const data = UserPerformance(prop)
-    console.log(prop);
+
     //convert data in an array to be able to use map method that is required to create a chart
     const arrayData = Object.values(data)
     
@@ -18,9 +18,9 @@ function RadarChartComponent({prop}) {
             cy={250}
             outerRadius={150}
             data={arrayData}>
-            <Radar dataKey="value" stroke="#DC143C" fill="#DC143C" fillOpacity={0.8} />
             <PolarGrid   radialLines={false} stroke="#FFFFFF"/>
             <PolarAngleAxis dataKey="kind" tick={{ fill: 'white' }}/>       
+            <Radar dataKey="value" stroke="#FF0000" fill="#FF0000" fillOpacity={0.8} />
           </RadarChart>
         </ResponsiveContainer>
     </div>

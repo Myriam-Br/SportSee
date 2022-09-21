@@ -8,7 +8,7 @@ import Profile from "../components/Profil";
 
 //IMPORT CHART COMPONENTS
 import BarChartComponent from '../components/BarChart';
-import LineChartComponent from '../components/LineChart';
+import AreaChartComponent from '../components/AreaChart';
 import RadarChartComponent from "../components/RadarChart"
 import PieChartComponent from '../components/PieChart';
 
@@ -29,7 +29,7 @@ function App() {
         <Profile prop = {userId}/>
         <BarChartComponent prop = {userId}/>
           <div className='secondary_container'>
-            <LineChartComponent prop = {userId}/>
+            <AreaChartComponent prop = {userId}/>
             <RadarChartComponent prop = {userId}/>
             <PieChartComponent prop = {userId}/>
           </div>
