@@ -1,9 +1,9 @@
 import React from "react";
 import { UserAverageSession } from "../mock_services/apiCalls";
-import {LineChart, Line, XAxis, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts'
+import { XAxis, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts'
 
 /**
- * @param { Number } prop
+ * @param { String } prop
 */
 function AreaChartComponent({prop}) {
     

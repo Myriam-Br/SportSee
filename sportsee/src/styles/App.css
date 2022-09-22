@@ -1,8 +1,13 @@
 .App {
   text-align: center;
   position: relative;
+  font-family: 'Roboto';
+  font-style: normal;
 }
-
+.error{
+  text-align: center;
+  font-size: 100px;
+}
 .NavBarH{
   background-color: black;
   color: white;
@@ -53,6 +58,7 @@ ul {
   position: absolute;
   bottom: 0;
   margin-bottom: 30px;
+  margin-left: 40px;
 }
  
 .rubriquesV li{
@@ -63,8 +69,13 @@ ul {
 .info_user{
   float: left;
   padding-left: 10px;
-  margin-top: -100px;
+  margin-top: -200px;
   font-family: 'Roboto';
+  font-size: 25px;
+  text-align: left;
+}
+
+.info_user h2{
   font-size: 25px;
 }
 
@@ -107,12 +118,6 @@ section{
   margin-right: 10%;
 }
 
-.container_activity {
-  border-radius: 10px;
-  background-color: #FBFBFB;;
-  width: 70%;
-  margin-top: 150px;
-}
 
 .secondary_container{
   width:73%;
@@ -120,6 +125,8 @@ section{
   flex-direction: row;
   justify-content: space-between;
   margin-top: 50px;
+  margin-bottom: 50px;
+  height: 500px;
 }
 
 .secondary_container .container_average_session{
@@ -134,15 +141,18 @@ section{
   font-size: 30px;
   font-weight: 400;
   width: 75%;
+  
 }
 
 .container_activity {
   width:70%;
-  margin-top: 200px;
-  position: relative;
+  margin-top: 300px;
   padding: 50px;
+  position: relative;
   padding-top: 80px;
   padding-right: 0px;
+  border-radius: 10px;
+  background-color: #FBFBFB;;
 }
 
 .container_activity .params_graph{
@@ -184,7 +194,7 @@ section{
 
 
 .container_activity_perf{
-  width: 32%;
+  width: 33%;
   border-radius: 10px;
   border: solid 2px black;
   background-color: black;
@@ -198,12 +208,15 @@ section{
 
 .container_user_score h3{
   text-align: left;
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 500;
   font-size: 30px;
   margin-left: 50px;
   margin-top: 70px;
+}
+
+.container_user_score h4{
+  font-size: 25px;
+  margin-top:-20px;
 }
 
 /*CUSTOMISED TOOLTIP*/

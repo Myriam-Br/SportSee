@@ -6,39 +6,48 @@ const baseUrl = "http://localhost:3000/user"
 
 /**
  *  Send request using axios api to get data user main info and keydata
- * @param { Number } prop
+ * @param { String } prop
  * @returns { Object } // info -> containd object userInfo and cardInfo
  */
 export default function UserMain(prop) {
+    console.log(typeof prop);
     const [userInfo, setUserInfo] = useState(null)
     const [cardInfo, setCardInfo] = useState(null)
+    const [error, setError] = useState(null)
 
     //fetch data with axios when loading the page
     useEffect(() => {
         axios.get(`${baseUrl}/${prop}`)
         .then(res => {
+            console.log(typeof prop);
             let userId = res.data.data.id
             setUserInfo(getUserById(userId))
             setCardInfo(getCardInfo(userId))
+            setError(null)
         })
         .catch(err => {
             console.log(err)
+            setError(err.response.status)
         })   
     })
 
-    //handle cases when userInfo and/or cardInfo is null to avoid errors when loading the data
-    if(userInfo === null || cardInfo === null) {
-        return 0
-    }  
+       
+        if(error === 404) {
+            window.location.pathname = "/error"
+        } 
 
-    const info = {
-        userInfo : userInfo,
-        cardInfo : cardInfo
+        if(error === null && userInfo !== null && cardInfo !== null ){
+
+            const info = {
+                userInfo : userInfo,
+                cardInfo : cardInfo
+            }
+            return info
+        }     
     }
 
+   
 
-    return info
-}
 
 
 /**
@@ -109,6 +118,7 @@ export function UserAverageSession(prop) {
     //replace 'day' values with object Days values
     Object.values(averageSession).map((elt, index) => {
         elt.day = Days[index]   
+        return elt
     })
 
     return averageSession
@@ -157,6 +167,7 @@ export function UserPerformance(prop) {
        if(activity.kind === JSON.parse(arrayActivities[index][0])) {
             activity.kind = arrayActivities[index][1].charAt(0).toUpperCase() + arrayActivities[index][1].slice(1)
        }
+       return activity
     })
 
     return userPerformance

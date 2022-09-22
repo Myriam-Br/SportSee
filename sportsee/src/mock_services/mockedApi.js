@@ -11,9 +11,12 @@ const {
  * @returns { Object }
  */
 export function getUserById(userId) {
-    //get info profil only (firstName, lastName, age)
+
+    console.log(typeof userId);
     for(let user of USER_MAIN_DATA) {
-        if(user.id === userId ) {
+        if(user.id === userId) {
+            console.log(user.id);
+            console.log(typeof userId);
             return user.userInfos
         }
     }
@@ -60,7 +63,7 @@ export function getUserAverageSession(userId) {
 
 /**
  * Get user performance from mockedData
- * @param { Number } userId
+ * @param { Number } 
  * @returns { Object }
  */
 export function getUserPerformance(userId) {
@@ -86,7 +89,8 @@ export function getUserScore(userId) {
             userScore = user.score * 100
           }
 
-          return userScore     
+          return userScore  
+            
         }
     }
 }

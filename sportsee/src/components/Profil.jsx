@@ -2,7 +2,7 @@ import React from "react";
 import UserMain from "../mock_services/apiCalls";
 
 /**
- * @param { Number } prop
+ * @param { String } prop
  */
 function Profil({prop}) {
     const data =  UserMain(prop)
@@ -15,6 +15,7 @@ function Profil({prop}) {
 
     return <div className="info_user">
         <h1>Bonjour <span style={{ 'color': nameColor}}>{data.userInfo["firstName"]}</span></h1>
+        <h2>Félicitation! vous avez explosé vos objectifs hier 👏</h2>
     </div>
 }
 

@@ -4,11 +4,11 @@ import { UserScore } from "../mock_services/apiCalls";
 
 
 /**
- * @param { Number } prop
+ * @param { String } prop
 */
 function PieChartComponent({prop}) {
     const data = UserScore(prop)
-
+    console.log(typeof prop);
     //convert data in an array to be able to use map method that is required to create a chart
     const arrayData =  Object.values(data)
 
