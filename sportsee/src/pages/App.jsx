@@ -16,19 +16,21 @@ import PieChartComponent from '../components/PieChart';
 function App() {
 
   const params = useParams()
+  let userId = parseInt(params.id)
+console.log('params', typeof params.id);
   return (
     <div className="App">
      
       <section className='main_container'>
-        <Profile prop = {params.id}/>
-        <BarChartComponent prop = {params.id}/>
+        <Profile prop = {userId}/>
+        <BarChartComponent prop = {userId}/>
           <div className='secondary_container'>
-            <AreaChartComponent prop = {params.id}/>
-            <RadarChartComponent prop = {params.id}/>
-            <PieChartComponent prop = {params.id}/>
+            <AreaChartComponent prop = {userId}/>
+            <RadarChartComponent prop = {userId}/>
+            <PieChartComponent prop = {userId}/>
           </div>
       </section>
-      <ContainerCard prop = {params.id}/>
+      <ContainerCard prop = {userId}/>
     </div>
   );
 }

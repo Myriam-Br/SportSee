@@ -11,12 +11,9 @@ const {
  * @returns { Object }
  */
 export function getUserById(userId) {
-
-    console.log(typeof userId);
+console.log('userId',userId);
     for(let user of USER_MAIN_DATA) {
         if(user.id === userId) {
-            console.log(user.id);
-            console.log(typeof userId);
             return user.userInfos
         }
     }

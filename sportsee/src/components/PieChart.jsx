@@ -4,7 +4,7 @@ import { UserScore } from "../mock_services/apiCalls";
 
 
 /**
- * @param { String } prop
+ * @param { Number } prop
 */
 function PieChartComponent({prop}) {
     const data = UserScore(prop)

@@ -5,7 +5,7 @@ import redDot from "../assets/redcircle.png"
 import blackDot from "../assets/blackcircle.png"
 
 /**
- * @param { String } prop
+ * @param { Number } prop
 */
 function BarChartComponent({prop}) {
     const data = UserActivity(prop)
@@ -35,7 +35,7 @@ function BarChartComponent({prop}) {
             </div>
         <ResponsiveContainer  className="barChart" width="100%" height={300}>
             <BarChart data={arrayData} >
-                <XAxis/>
+                <XAxis />
                 <YAxis orientation="right"/>
                 <CartesianGrid vertical={false} strokeDashArray="5 5" />
                 <Tooltip content={<CustomTooltip />} />

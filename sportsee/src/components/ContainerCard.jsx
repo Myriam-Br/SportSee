@@ -8,10 +8,9 @@ import proteinIcon from "../assets/protein-icon.png"
 
 
 /**
- * @param { String } prop
+ * @param { Number } prop
 */
 function ContainerCard({prop}) {
-
     //create new Object icons with all the icon files
     const icons = {
         Calories : caloriesIcon,

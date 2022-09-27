@@ -2,7 +2,7 @@ import React from "react";
 import UserMain from "../mock_services/apiCalls";
 
 /**
- * @param { String } prop
+ * @param { Number } prop
  */
 function Profil({prop}) {
     const data =  UserMain(prop)

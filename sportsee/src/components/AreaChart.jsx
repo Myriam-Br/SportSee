@@ -3,7 +3,7 @@ import { UserAverageSession } from "../mock_services/apiCalls";
 import { XAxis, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts'
 
 /**
- * @param { String } prop
+ * @param { Number } prop
 */
 function AreaChartComponent({prop}) {
     
@@ -27,8 +27,8 @@ function AreaChartComponent({prop}) {
     return <div className="container_average_session">
         <h2>Durée moyenne des sessions</h2>
         <ResponsiveContainer className="areaChart"  width="100%" height={300}  >
-          <AreaChart data={arrayData}>     
-            <XAxis dataKey="day" stroke="white" tickLine={false}  axisLine={false}/>
+          <AreaChart width={250} height={300} data={arrayData}>     
+            <XAxis type="category" dataKey="day" stroke="white" tickLine={false}  axisLine={false}/>
             <Tooltip content={<CustomTooltip />}/>
             <Area type="monotone" dataKey="sessionLength" stroke="white" fill="none" />
           </AreaChart>
