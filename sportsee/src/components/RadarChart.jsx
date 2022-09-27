@@ -9,6 +9,7 @@ function RadarChartComponent({prop}) {
   
     const data = UserPerformance(prop)
 
+    console.log(prop);
     //convert data in an array to be able to use map method that is required to create a chart
     const arrayData = Object.values(data)
 
