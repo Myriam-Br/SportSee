@@ -7,15 +7,15 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } fro
 */
 function RadarChartComponent({prop}) {
   
-  console.log(typeof prop);
     const data = UserPerformance(prop)
 
     //convert data in an array to be able to use map method that is required to create a chart
     const arrayData = Object.values(data)
-    console.log(arrayData);
-    
-    return <div className="container_activity_perf">
-        <ResponsiveContainer className="radarChart" width="100%" height="100%">
+
+    //display chart only if there's data in array
+    function DisplayChart() {
+      if(arrayData.length > 0) {
+          return <ResponsiveContainer className="radarChart" width="100%" height="100%">
           <RadarChart 
             cx={205}
             cy={240}
@@ -26,6 +26,14 @@ function RadarChartComponent({prop}) {
             <Radar dataKey="value" stroke="#FF0000" fill="#FF0000" fillOpacity={0.8} />
           </RadarChart>
         </ResponsiveContainer>
+      } 
+      else {
+        return <h3>No data available</h3>
+      }
+    }
+
+    return <div className="container_activity_perf">
+        <DisplayChart/>
     </div>
     ;
 }

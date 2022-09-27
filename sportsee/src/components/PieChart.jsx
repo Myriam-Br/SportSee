@@ -8,7 +8,6 @@ import { UserScore } from "../mock_services/apiCalls";
 */
 function PieChartComponent({prop}) {
     const data = UserScore(prop)
-    console.log(typeof prop);
     //convert data in an array to be able to use map method that is required to create a chart
     const arrayData =  Object.values(data)
 
@@ -18,9 +17,10 @@ function PieChartComponent({prop}) {
 
     let value = `${arrayData[0].score}%`
   
-    return( <div className="container_user_score">
-        <h3>Score</h3>
-        <ResponsiveContainer className="pieChart" width="100%" height={250}>
+    //display chart only if there's data in array
+    function DisplayChart() {
+        if(arrayData.length > 0) {
+            return  <ResponsiveContainer className="pieChart" width="100%" height={250}>
             <PieChart>
             <Pie
                     data={arrayData}
@@ -51,6 +51,15 @@ function PieChartComponent({prop}) {
                 </Pie>
             </PieChart>
       </ResponsiveContainer>
+        } 
+        else {
+          return <h3>No data available</h3>
+        }
+      }
+
+    return( <div className="container_user_score">
+        <h3>Score</h3>
+       <DisplayChart/>
       <h4>de votre objectif</h4>
     </div>
         

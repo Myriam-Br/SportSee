@@ -26,14 +26,11 @@ function BarChartComponent({prop}) {
       
         return null;
     };
-      
-    return <article className="container_activity"> 
-            <h2>Activité quotidienne</h2>
-            <div className="params_graph">
-                <p><img src={blackDot} alt=""/>Poids (kg)</p>
-                <p><img src={redDot} alt="" />Calories brulées (kCal)</p>     
-            </div>
-        <ResponsiveContainer  className="barChart" width="100%" height={300}>
+
+    //display chart only if there's data in array
+    function DisplayChart() {
+        if(arrayData.length > 0) {
+            return    <ResponsiveContainer  className="barChart" width="100%" height={300}>
             <BarChart data={arrayData} >
                 <XAxis />
                 <YAxis orientation="right"/>
@@ -45,7 +42,20 @@ function BarChartComponent({prop}) {
             </BarChart>
         </ResponsiveContainer>
         
-     
+        } 
+        else {
+          return <h3>No data available</h3>
+        }
+      }
+  
+      
+    return <article className="container_activity"> 
+            <h2>Activité quotidienne</h2>
+            <div className="params_graph">
+                <p><img src={blackDot} alt=""/>Poids (kg)</p>
+                <p><img src={redDot} alt="" />Calories brulées (kCal)</p>     
+            </div>
+            <DisplayChart/>
     </article>
 }
 
