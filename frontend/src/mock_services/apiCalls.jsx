@@ -10,25 +10,30 @@ const baseUrl = "http://localhost:3000/user"
  * @returns { Object } // info -> containd object userInfo and cardInfo
  */
 export default function UserMain(prop) {
-    console.log(typeof prop);
     const [userInfo, setUserInfo] = useState(null)
     const [cardInfo, setCardInfo] = useState(null)
     const [error, setError] = useState(null)
 
     //fetch data with axios when loading the page
     useEffect(() => {
-        axios.get(`${baseUrl}/${prop}`)
-        .then(res => {
-            console.log(typeof prop);
-            let userId = res.data.data.id
-            setUserInfo(getUserById(userId))
-            setCardInfo(getCardInfo(userId))
-            setError(null)
-        })
-        .catch(err => {
-            console.log(err)
-            setError(err.response.status)
-        })   
+ 
+        if(!baseUrl){
+            setUserInfo(getUserById(prop))
+            setCardInfo(getCardInfo(prop))
+        } else{
+            axios.get(`${baseUrl}/${prop}`)
+            .then(res => {
+                let userId = res.data.data.id
+                setUserInfo(getUserById(userId))
+                setCardInfo(getCardInfo(userId))
+                setError(null)
+            })
+            .catch(err => {
+                console.log(err)
+                setError(err.response.status)
+            })   
+        }
+       
     })
 
        
@@ -60,14 +65,20 @@ export function UserActivity(prop) {
 
     //fetch data with axios when loading the page
     useEffect(() => {
-        axios.get(`${baseUrl}/${prop}/activity`)
-        .then(res => {
-            let userId = res.data.data.userId
-            setUserActivity(getUserActivity(userId))
-        })
-        .catch(err => {
-            console.log(err)
-        })   
+        if(!baseUrl){
+            setUserActivity(getUserActivity(prop))
+       
+        } else{
+            axios.get(`${baseUrl}/${prop}/activity`)
+            .then(res => {
+                let userId = res.data.data.userId
+                setUserActivity(getUserActivity(userId))
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+      
     })
 
     //handle cases when userActivity is not an object to avoid errors when loading the data
@@ -89,14 +100,20 @@ export function UserAverageSession(prop) {
 
     //fetch data with axios when loading the page
     useEffect(() =>{
-        axios.get(`${baseUrl}/${prop}/average-sessions`)
-        .then((res) => {
-            let userId = res.data.data.userId
-            setAverageSession(getUserAverageSession(userId))
-        })
-        .catch(err => {
-            console.log(err)
-        })  
+        if(!baseUrl){
+            setAverageSession(getUserAverageSession(prop))
+       
+        }else{
+            axios.get(`${baseUrl}/${prop}/average-sessions`)
+            .then((res) => {
+                let userId = res.data.data.userId
+                setAverageSession(getUserAverageSession(userId))
+            })
+            .catch(err => {
+                console.log(err)
+            })  
+        }
+     
     })
  
     //handle cases when averageSession is not an object to avoid errors when loading the data
@@ -134,14 +151,20 @@ export function UserPerformance(prop) {
 
     //fetch data with axios when loading the page
     useEffect(() =>{
-        axios.get(`${baseUrl}/${prop}/performance`)
-        .then((res) => {
-           let userId =  res.data.data.userId
-           setUserPerformance(getUserPerformance(userId))
-        })
-        .catch(err => {
-            console.log(err)
-        })  
+        if(!baseUrl){
+            setUserPerformance(getUserPerformance(prop))
+       
+        }else{
+            axios.get(`${baseUrl}/${prop}/performance`)
+            .then((res) => {
+               let userId =  res.data.data.userId
+               setUserPerformance(getUserPerformance(userId))
+            })
+            .catch(err => {
+                console.log(err)
+            })  
+        }
+       
     })
 
     //handle cases when userPerformance is not an object to avoid errors when loading the data
@@ -184,14 +207,20 @@ export function UserScore(prop) {
 
     //fetch data with axios when loading the page
     useEffect(() =>{
-    axios.get(`${baseUrl}/${prop}`)
-    .then((res) => {
-       let userId = res.data.data.id
-       setUserScore(getUserScore(userId))
-    })
-    .catch(err => {
-        console.log(err)
-    })  
+        if(!baseUrl){
+            setUserScore(getUserScore(prop))
+       
+        }else{
+            axios.get(`${baseUrl}/${prop}`)
+            .then((res) => {
+               let userId = res.data.data.id
+               setUserScore(getUserScore(userId))
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+     
     })
 
     //handle cases when userScore is not a number to avoid errors when loading the data
