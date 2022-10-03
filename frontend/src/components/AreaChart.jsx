@@ -3,7 +3,7 @@ import { UserAverageSession } from "../mock_services/apiCalls";
 import { XAxis, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts'
 
 /**
- * @param { Number } prop
+ * @param { String } prop
 */
 function AreaChartComponent({prop}) {
     

@@ -5,7 +5,7 @@ import redDot from "../assets/redcircle.png"
 import blackDot from "../assets/blackcircle.png"
 
 /**
- * @param { Number } prop
+ * @param { String } prop
 */
 function BarChartComponent({prop}) {
     const data = UserActivity(prop)

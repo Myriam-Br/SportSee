@@ -7,13 +7,12 @@ const {
 
 /**
  * Get user info from mockedData
- * @param { Number } userId
+ * @param { String } userId
  * @returns { Object }
  */
 export function getUserById(userId) {
-console.log('userId',userId);
     for(let user of USER_MAIN_DATA) {
-        if(user.id === userId) {
+        if(user.id.toString() === userId) { 
             return user.userInfos
         }
     }
@@ -21,12 +20,12 @@ console.log('userId',userId);
 
 /**
  * Get user keyData from mockedData
- * @param { Number } userId
+ * @param { String } userId
  * @returns { Object }
  */
 export function getCardInfo(userId) {
     for(let user of USER_MAIN_DATA) {
-        if(user.id === userId) {
+        if(user.id.toString() === userId) {
             return user.keyData
         }
     }
@@ -34,12 +33,12 @@ export function getCardInfo(userId) {
 
 /**
  * Get user activities from mockedData
- * @param { Number } userId
+ * @param { String } userId
  * @returns { Object }
  */
 export function getUserActivity(userId) {
     for(let user of USER_ACTIVITY) {
-        if(user.userId === userId) {
+        if(user.userId.toString() === userId) {
             return user.sessions
         }
     }
@@ -47,12 +46,12 @@ export function getUserActivity(userId) {
 
 /**
  * Get user average session from mockedData
- * @param { Number } userId
+ * @param { String } userId
  * @returns { Object }
  */
 export function getUserAverageSession(userId) {
     for(let user of USER_AVERAGE_SESSIONS) {
-        if(user.userId === userId) {
+        if(user.userId.toString() === userId) {
             return user.sessions
         }
     }
@@ -60,12 +59,12 @@ export function getUserAverageSession(userId) {
 
 /**
  * Get user performance from mockedData
- * @param { Number } 
+ * @param { String } 
  * @returns { Object }
  */
 export function getUserPerformance(userId) {
     for(let user of USER_PERFORMANCE) {
-        if(user.userId === userId) {
+        if(user.userId.toString() === userId) {
             return user.data
         }
     }
@@ -73,12 +72,12 @@ export function getUserPerformance(userId) {
 
 /**
  * Get user score from mockedData
- * @param { Number } userId
+ * @param { String } userId
  * @returns { Number }
  */
 export function getUserScore(userId) {
   for(let user of USER_MAIN_DATA) {
-        if(user.id === userId) {
+        if(user.id.toString() === userId) {
           let userScore = ''
           if(user.score === undefined) {
             userScore = user.todayScore * 100

@@ -2,12 +2,12 @@ import React from "react";
 import UserMain from "../mock_services/apiCalls";
 
 /**
- * @param { Number } prop
+ * @param { String } prop
  */
 function Profil({prop}) {
     const data =  UserMain(prop)
     let nameColor = "red"
-    
+   
     //gestion le cas ou on renvoie null à la place des données lors de la récupération dans apiCalls
     if(typeof data !== "object") {
         return 0

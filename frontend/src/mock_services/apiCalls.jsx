@@ -14,41 +14,44 @@ export default function UserMain(prop) {
     const [cardInfo, setCardInfo] = useState(null)
     const [error, setError] = useState(null)
 
-    //fetch data with axios when loading the page
-    useEffect(() => {
- 
-        if(!baseUrl){
-            setUserInfo(getUserById(prop))
-            setCardInfo(getCardInfo(prop))
-        } else{
-            axios.get(`${baseUrl}/${prop}`)
-            .then(res => {
-                let userId = res.data.data.id
-                setUserInfo(getUserById(userId))
-                setCardInfo(getCardInfo(userId))
-                setError(null)
-            })
-            .catch(err => {
-                console.log(err)
-                setError(err.response.status)
-            })   
-        }
-       
-    })
+         //fetch data with axios when loading the page
+        useEffect(() => {
+
+            if(baseUrl !== 'http://localhost:3000/user') { 
+                setUserInfo(getUserById(prop))
+                setCardInfo(getCardInfo(prop))           
+            }
+
+            else{
+                axios.get(`${baseUrl}/${prop}`)
+                .then(res => {
+                    let userId = JSON.stringify(res.data.data.id) 
+                    setUserInfo(getUserById(userId))
+                    setCardInfo(getCardInfo(userId))
+                    setError(null)
+                })
+                .catch(err => {
+                    setError(err.response.status)
+                })   
+            }
+        
+        })
 
        
         if(error === 404) {
             window.location.pathname = "/error"
         } 
 
-        if(error === null && userInfo !== null && cardInfo !== null ){
+        const info = {
+            userInfo : userInfo,
+            cardInfo : cardInfo
+        }
 
-            const info = {
-                userInfo : userInfo,
-                cardInfo : cardInfo
-            }
+        //return object only when info exist
+        if(userInfo !== null && cardInfo !== null) {
             return info
-        }     
+        }
+            
     }
 
    
@@ -57,7 +60,7 @@ export default function UserMain(prop) {
 
 /**
  *  Send request using axios api to get data user activity
- * @param { Number } prop
+ * @param { String } prop
  * @returns { Object } // userActivity
  */
 export function UserActivity(prop) {
@@ -65,13 +68,14 @@ export function UserActivity(prop) {
 
     //fetch data with axios when loading the page
     useEffect(() => {
-        if(!baseUrl){
+        if(baseUrl !== 'http://localhost:3000/user'){
             setUserActivity(getUserActivity(prop))
-       
-        } else{
+        } 
+
+        else{
             axios.get(`${baseUrl}/${prop}/activity`)
             .then(res => {
-                let userId = res.data.data.userId
+                let userId = JSON.stringify(res.data.data.userId) 
                 setUserActivity(getUserActivity(userId))
             })
             .catch(err => {
@@ -92,7 +96,7 @@ export function UserActivity(prop) {
 
 /**
  *  Send request using axios api to get data user average session
- * @param { Number } prop
+ * @param { String } prop
  * @returns { Object } // averageSession
  */
 export function UserAverageSession(prop) {
@@ -100,13 +104,14 @@ export function UserAverageSession(prop) {
 
     //fetch data with axios when loading the page
     useEffect(() =>{
-        if(!baseUrl){
+        if(baseUrl !== 'http://localhost:3000/user'){
             setAverageSession(getUserAverageSession(prop))
-       
-        }else{
+        } 
+
+        else{
             axios.get(`${baseUrl}/${prop}/average-sessions`)
             .then((res) => {
-                let userId = res.data.data.userId
+                let userId = JSON.stringify(res.data.data.userId) 
                 setAverageSession(getUserAverageSession(userId))
             })
             .catch(err => {
@@ -143,7 +148,7 @@ export function UserAverageSession(prop) {
 
 /**
  *  Send request using axios api to get data user performance 
- * @param { Number } prop
+ * @param { String } prop
  * @returns { Object } // userPerformance
  */
 export function UserPerformance(prop) {
@@ -151,13 +156,13 @@ export function UserPerformance(prop) {
 
     //fetch data with axios when loading the page
     useEffect(() =>{
-        if(!baseUrl){
+        if(baseUrl !== 'http://localhost:3000/user'){
             setUserPerformance(getUserPerformance(prop))
-       
-        }else{
+        } 
+        else{
             axios.get(`${baseUrl}/${prop}/performance`)
             .then((res) => {
-               let userId =  res.data.data.userId
+                let userId = JSON.stringify(res.data.data.userId) 
                setUserPerformance(getUserPerformance(userId))
             })
             .catch(err => {
@@ -199,7 +204,7 @@ export function UserPerformance(prop) {
 
 /**
  *  Send request using axios api to get data user performance 
- * @param { Number } prop
+ * @param { String } prop
  * @returns { Object } // UserScore -> contains object userScore 
  */
 export function UserScore(prop) {
@@ -207,14 +212,14 @@ export function UserScore(prop) {
 
     //fetch data with axios when loading the page
     useEffect(() =>{
-        if(!baseUrl){
+        if(baseUrl !== 'http://localhost:3000/user'){
             setUserScore(getUserScore(prop))
-       
-        }else{
+        } 
+        else{
             axios.get(`${baseUrl}/${prop}`)
             .then((res) => {
-               let userId = res.data.data.id
-               setUserScore(getUserScore(userId))
+                let userId = JSON.stringify(res.data.data.id) 
+                setUserScore(getUserScore(userId))
             })
             .catch(err => {
                 console.log(err)

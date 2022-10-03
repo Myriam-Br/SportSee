@@ -3,7 +3,7 @@ import { UserPerformance } from "../mock_services/apiCalls";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 
 /**
- * @param { Number } prop
+ * @param { String } prop
 */
 function RadarChartComponent({prop}) {
   
