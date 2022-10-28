@@ -1,42 +1,38 @@
 import React from "react";
-import { UserPerformance } from "../mock_services/apiCalls";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
+import PropTypes from 'prop-types';
+import { Api } from "../mock_services/apiCalls";
 
 /**
  * @param { String } prop
 */
 function RadarChartComponent({prop}) {
   
-    const data = UserPerformance(prop)
+    const data = Api('performance', prop)
 
-    console.log(prop);
-    //convert data in an array to be able to use map method that is required to create a chart
-    const arrayData = Object.values(data)
-
-    //display chart only if there's data in array
     function DisplayChart() {
-      if(arrayData.length > 0) {
-          return <ResponsiveContainer className="radarChart" width="100%" height="100%">
-          <RadarChart 
-            cx={205}
-            cy={240}
-            outerRadius={150}
-            data={arrayData}>
-            <PolarGrid   radialLines={false} stroke="#FFFFFF"/>
-            <PolarAngleAxis type="category" dataKey="kind" tick={{ fill: 'white' }}/>       
-            <Radar dataKey="value" stroke="#FF0000" fill="#FF0000" fillOpacity={0.8} />
-          </RadarChart>
-        </ResponsiveContainer>
-      } 
-      else {
-        return <h3>No data available</h3>
+      if(data.data.length > 0 ){
+        return  <ResponsiveContainer className="radarChart chart" width="100%" minWidth="10%" height="100%">
+        <RadarChart 
+          cx={205}
+          cy={240}
+          outerRadius={150}
+          data={data.data}>
+          <PolarGrid   radialLines={false} stroke="#FFFFFF"/>
+          <PolarAngleAxis type="category" dataKey="kind" tick={{ fill: 'white' }}/>       
+          <Radar dataKey="value" stroke="#FF0000" fill="#FF0000" fillOpacity={0.8} />
+        </RadarChart>
+      </ResponsiveContainer>
       }
     }
-
     return <div className="container_activity_perf">
-        <DisplayChart/>
+       <DisplayChart/>
     </div>
     ;
 }
+
+RadarChartComponent.propTypes = {
+  prop: PropTypes.string.isRequired,
+};
 
 export default RadarChartComponent

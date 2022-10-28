@@ -1,19 +1,16 @@
 import React from "react";
-import { UserActivity } from "../mock_services/apiCalls";
 import { XAxis, YAxis,  Bar, BarChart, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 import redDot from "../assets/redcircle.png"
 import blackDot from "../assets/blackcircle.png"
-
+import { Api} from "../mock_services/apiCalls";
+import PropTypes from 'prop-types';
+import ErrorMessage from "./ErrorMessage";
 /**
  * @param { String } prop
 */
 function BarChartComponent({prop}) {
-    const data = UserActivity(prop)
+    const data = Api("daily-activity", prop)
 
-    //convert data in an array to be able to use map method that is required to create a chart
-    const arrayData = Object.values(data)
-
-      
     const CustomTooltip = ({ active, payload}) => {
         if (active && payload && payload.length) {
           return (
@@ -27,28 +24,27 @@ function BarChartComponent({prop}) {
         return null;
     };
 
-    //display chart only if there's data in array
+    CustomTooltip.propTypes = {
+      active: PropTypes.bool,
+      payload: PropTypes.array,
+    };
+    
     function DisplayChart() {
-        if(arrayData.length > 0) {
-            return    <ResponsiveContainer  className="barChart" width="100%" height={300}>
-            <BarChart data={arrayData} >
-                <XAxis />
-                <YAxis orientation="right"/>
-                <CartesianGrid vertical={false} strokeDashArray="5 5" />
-                <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="calories" barSize={10} fill="#DC143C"/>    
-                <Bar dataKey="kilogram" barSize={10} fill="#000000"/>
-              
-            </BarChart>
+      if(data.data.length > 0 ){
+        return <ResponsiveContainer  className="barChart chart" width="100%" height={300}>
+        <BarChart data={data.data} >
+            <XAxis />
+            <YAxis orientation="right"/>
+            <CartesianGrid vertical={false} strokeDashArray="5 5" />
+            <Tooltip content={<CustomTooltip />} />
+            <Bar dataKey="calories" radius={[10, 10, 0, 0]} barSize={10} fill="#DC143C"/>    
+            <Bar dataKey="kilogram"  radius={[10, 10, 0, 0]} barSize={10} fill="#000000"/>
+          
+        </BarChart>
         </ResponsiveContainer>
-        
-        } 
-        else {
-          return <h3>No data available</h3>
-        }
       }
-  
-      
+    }
+    
     return <article className="container_activity"> 
             <h2>Activité quotidienne</h2>
             <div className="params_graph">
@@ -56,7 +52,14 @@ function BarChartComponent({prop}) {
                 <p><img src={redDot} alt="" />Calories brulées (kCal)</p>     
             </div>
             <DisplayChart/>
+            <ErrorMessage error = {data.error}/>
     </article>
 }
+
+BarChartComponent.propTypes = {
+  prop: PropTypes.string.isRequired,
+}
+
+
 
 export default BarChartComponent

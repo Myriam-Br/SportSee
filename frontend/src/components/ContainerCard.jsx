@@ -1,41 +1,37 @@
 import React from "react";
 import Card from "./Card";
-import UserMain from "../mock_services/apiCalls";
+import { MockedAPI } from "../mock_services/mockedApi";
 import caloriesIcon from "../assets/calories-icon.png"
 import fatIcon from "../assets/fat-icon.png"
 import carbsIcon from "../assets/carbs-icon.png"
 import proteinIcon from "../assets/protein-icon.png"
-
+import { Api } from "../mock_services/apiCalls";
+import PropTypes from 'prop-types';
 
 /**
  * @param { String } prop
 */
 function ContainerCard({prop}) {
     //create new Object icons with all the icon files
-    const icons = {
-        Calories : caloriesIcon,
-        Proteines: proteinIcon,
-        Glucides: carbsIcon,
-        Lipides: fatIcon,
-    }
+    const icons = [
+        caloriesIcon,
+        proteinIcon,
+        carbsIcon,
+        fatIcon,
+    ]
+     
+    const data = Api('key-data', prop)
 
-
-    const data = UserMain(prop)
-    
-    //handle case where data is not an object
-    if(typeof data !== "object") {
-        return 0
-    }
-
-    //convert data.cardInfo and icons into arrays
-    const cardInfoTab = Object.entries(data.cardInfo)
-    const iconTab = Object.entries(icons)
-
+    console.log(data);
     return <div className="card_container">
-        {cardInfoTab.map((elt, index) => {
-            return <Card key={index}  name={iconTab[index][0]} value={elt[1]} icon={iconTab[index][1]}/>    
-        })}
-    </div>
+            {data.data.map((elt, index) => {
+                return <Card key={index}  name={elt.name} value={elt.count} unite={elt.unite} icon={icons[index]}/>    
+            })}
+        </div>
 }
+
+ContainerCard.propTypes = {
+    prop: PropTypes.string.isRequired,
+  };
 
 export default ContainerCard

@@ -1,17 +1,16 @@
 import React from "react";
-import { UserAverageSession } from "../mock_services/apiCalls";
 import { XAxis, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts'
-
+import { MockedAPI } from "../mock_services/mockedApi";
+import { Api } from "../mock_services/apiCalls";
+import PropTypes from 'prop-types';
+import ErrorMessage from "./ErrorMessage";
 /**
  * @param { String } prop
 */
 function AreaChartComponent({prop}) {
     
-    const data = UserAverageSession(prop)
+    const data = Api('average-sessions', prop)
 
-    //convert data in an array to be able to use map method that is required to create a chart
-    const arrayData = Object.values(data)
-  
     const CustomTooltip = ({ active, payload}) => {
         if (active && payload && payload.length) {
           return (
@@ -23,26 +22,31 @@ function AreaChartComponent({prop}) {
         return null;
     };
 
-    //display chart only if there's data in array
+    CustomTooltip.propTypes = {
+      active: PropTypes.bool,
+      payload: PropTypes.array,
+    };
+    
     function DisplayChart() {
-      if(arrayData.length > 0) {
-          return <ResponsiveContainer className="areaChart"  width="100%" height={300}  >
-            <AreaChart width={250} height={300} data={arrayData}>     
-              <XAxis type="category" dataKey="day" stroke="white" tickLine={false}  axisLine={false}/>
-              <Tooltip content={<CustomTooltip />}/>
-              <Area type="monotone" dataKey="sessionLength" stroke="white" fill="none" />
-            </AreaChart>
-          </ResponsiveContainer>   
-      } 
-      else {
-        return <h3>No data available</h3>
+      if(data.data.length > 0 ){
+        return  <ResponsiveContainer className="areaChart chart"  width="100%" height={300}  >
+        <AreaChart width={250} height={300} data={data.data}>     
+          <XAxis type="category" dataKey="day" stroke="white" tickLine={false}  axisLine={false}/>
+          <Tooltip content={<CustomTooltip />}/>
+          <Area type="monotone" dataKey="sessionLength" stroke="white" fill="none" />
+        </AreaChart>
+      </ResponsiveContainer>   
       }
     }
 
     return <div className="container_average_session">
         <h2>Durée moyenne des sessions</h2>
-        <DisplayChart />
+        <DisplayChart/>       
     </div>
 }
+
+AreaChartComponent.propTypes = {
+  prop: PropTypes.string.isRequired,
+};
 
 export default AreaChartComponent

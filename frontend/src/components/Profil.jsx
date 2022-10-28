@@ -1,22 +1,23 @@
 import React from "react";
-import UserMain from "../mock_services/apiCalls";
+import { Api } from "../mock_services/apiCalls";
+import PropTypes from 'prop-types';
+import ErrorMessage from "./ErrorMessage";
 
 /**
  * @param { String } prop
  */
 function Profil({prop}) {
-    const data =  UserMain(prop)
+    const data =  Api('firstName', prop)
     let nameColor = "red"
-   
-    //gestion le cas ou on renvoie null à la place des données lors de la récupération dans apiCalls
-    if(typeof data !== "object") {
-        return 0
-    }
-
     return <div className="info_user">
-        <h1>Bonjour <span style={{ 'color': nameColor}}>{data.userInfo["firstName"]}</span></h1>
-        <h2>Félicitation! vous avez explosé vos objectifs hier 👏</h2>
+        <h1>Bonjour<span style={{ 'color': nameColor}}> {data.data.firstName}</span></h1>
+        <h2>{data.data.description}</h2>
+        <ErrorMessage error = {data.error}/>
     </div>
 }
+
+Profil.propTypes = {
+    prop: PropTypes.string.isRequired,
+};
 
 export default Profil
