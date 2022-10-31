@@ -9,7 +9,7 @@ import { Api } from "../mock_services/apiCalls";
 function RadarChartComponent({prop}) {
   
     const data = Api('performance', prop)
-
+    console.log(data);
     function DisplayChart() {
       if(data.data.length > 0 ){
         return  <ResponsiveContainer className="radarChart chart" width="100%" minWidth="10%" height="100%">
@@ -25,7 +25,7 @@ function RadarChartComponent({prop}) {
       </ResponsiveContainer>
       }
     }
-    return <div className="container_activity_perf">
+    return <div className="container_activity_perf chart_container">
        <DisplayChart/>
     </div>
     ;

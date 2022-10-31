@@ -39,7 +39,7 @@ function AreaChartComponent({prop}) {
       }
     }
 
-    return <div className="container_average_session">
+    return <div className="container_average_session chart_container">
         <h2>Durée moyenne des sessions</h2>
         <DisplayChart/>       
     </div>

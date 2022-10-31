@@ -45,7 +45,7 @@ function BarChartComponent({prop}) {
       }
     }
     
-    return <article className="container_activity"> 
+    return <article className="container_activity chart_container"> 
             <h2>Activité quotidienne</h2>
             <div className="params_graph">
                 <p><img src={blackDot} alt=""/>Poids (kg)</p>

@@ -19,17 +19,21 @@ function App() {
 
   return (
     <div className="App">
-     
+
       <section className='main_container'>
-        <Profile prop = {params.id}/>
-        <BarChartComponent prop = {params.id}/>
+      <Profile prop = {params.id}/>
+        <ContainerCard prop = {params.id}/>
+        <div className='chart_containers'>
+          <BarChartComponent prop = {params.id}/>
           <div className='secondary_container'>
             <AreaChartComponent prop = {params.id}/>
             <RadarChartComponent prop = {params.id}/>
             <PieChartComponent prop = {params.id}/>
           </div>
+        </div>
+       
       </section>
-      <ContainerCard prop = {params.id}/>
+    
     </div>
   );
 }

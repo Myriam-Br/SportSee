@@ -22,11 +22,14 @@ function ContainerCard({prop}) {
      
     const data = Api('key-data', prop)
 
-    console.log(data);
     return <div className="card_container">
-            {data.data.map((elt, index) => {
+            {data.data.length > 0 ? (data.data.map((elt, index) => {
                 return <Card key={index}  name={elt.name} value={elt.count} unite={elt.unite} icon={icons[index]}/>    
-            })}
+            })) : (icons.map((elt, index) =>{
+                return <Card key={index}  name='NO DATA ' value='' unite='' icon={icons[index]}/>    
+            }))
+            }
+          
         </div>
 }
 

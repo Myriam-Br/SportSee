@@ -55,7 +55,7 @@ function PieChartComponent({prop}) {
             </div>     
         }
     }
-    return( <div className="container_user_score">
+    return( <div className="container_user_score chart_container">
         <h3>Score</h3>
         <DisplayChart/>
       
