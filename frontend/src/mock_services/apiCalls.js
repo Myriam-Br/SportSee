@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { MockedAPI } from "./mockedApi";
 import axios from 'axios'
 const baseUrl = "http://localhost:3000"
 

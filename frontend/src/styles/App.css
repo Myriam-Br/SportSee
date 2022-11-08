@@ -244,11 +244,11 @@ section{
     font-weight: bold;
   }
 
-  @media screen and (max-width: 780px) {
+  @media screen and (max-width: 1024px) {
    
     section {
       position: relative;
-      width: 75%;
+      width: 70%;
       margin-top: 300px;
     }
 
@@ -310,9 +310,33 @@ section{
       margin: 10px;
     }
 
-    .secondary_container .radarChart {
-      margin-left: 80px;
+    .container_activity_perf{
+      align-content: center;
+      position: relative;
     }
-
+    .recharts-wrapper {
+      margin : 0 auto;
+    }
+    .radarChart{
+      margin-left: 15%;
+      position: relative;
+    }
+    .radarChart svg {
+      width: 90%;
+    }
     
+
   }
+
+  @media screen and (min-width: 1024px){
+    .NavBarH {
+      justify-content: unset;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .rubriquesH {
+      width: 80%;
+    }
+  
+  }
+

@@ -7,17 +7,17 @@ import { Api } from "../mock_services/apiCalls";
  * @param { String } prop
 */
 function RadarChartComponent({prop}) {
-  
     const data = Api('performance', prop)
-    console.log(data);
+
     function DisplayChart() {
       if(data.data.length > 0 ){
         return  <ResponsiveContainer className="radarChart chart" width="100%" minWidth="10%" height="100%">
-        <RadarChart 
+        <RadarChart
           cx={205}
           cy={240}
           outerRadius={150}
-          data={data.data}>
+          data={data.data}
+         >
           <PolarGrid   radialLines={false} stroke="#FFFFFF"/>
           <PolarAngleAxis type="category" dataKey="kind" tick={{ fill: 'white' }}/>       
           <Radar dataKey="value" stroke="#FF0000" fill="#FF0000" fillOpacity={0.8} />
